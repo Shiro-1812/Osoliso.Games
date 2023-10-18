@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>ゲーム画面</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body class="gamescreen">
+    <div style="text-align: center;"> 
+        <!---ボタン類--->
+        <button class="button" id="startBtn" onclick="main()">開始</button>
+        <a href="getisu.html">
+            <input type="button" value="戻る">
+        </a>
+        <!---タイムと名前入力欄(ランキングのため)--->
+        <p id="time">Null</p>
+        <p id="mybestTime">Null</p>
+        <label for="playername">ハンドルネーム(12文字以内)</label><br>
+        <input type="text" id="playername" name="playername" maxlength="12" size="10">
+    </div>
+    <!---game screen--->
+    <div class="hiddencls">
+        <img class="box1"  id="box1"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box2"  id="box2"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box3"  id="box3"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box4"  id="box4"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box5"  id="box5"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box6"  id="box6"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box7"  id="box7"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box8"  id="box8"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box9"  id="box9"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box10" id="box10" src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box11" id="box11" src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+        <img class="box12" id="box12" src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+    </div>
+    <div style="text-align: center;" class="ranking">
+        <h1>ランキング上位10位</h1>
+        <!-------------ランキング画面------------->
+        <!--id管理めんどくさいのでth固定にしている-->
+        <p id="1th"></p>
+        <p id="2th"></p>
+        <p id="3th"></p>
+        <p id="4th"></p>
+        <p id="5th"></p>
+        <p id="6th"></p>
+        <p id="7th"></p>
+        <p id="8th"></p>
+        <p id="9th"></p>
+        <p id="10th"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+.hiddencls
+{
+    position: absolute;
+    width     : 50%;
+    height    : 50%;
+}
+.hiddencls img
+{
+    position  : absolute;
+    width     : 100px;
+    height    : 100px;
+}
+.box1
+{
+    left: 575px;
+    top : 25px;
+}
+.box2
+{
+    left: 675px;
+    top : 25px;
+}
+.box3
+{
+    left: 775px;
+    top : 25px;
+    
+}
+.box4
+{
+    left: 875px;
+    top : 25px;
+}
+.box5
+{
+    left: 575px;
+    top : 125px;
+}
+.box6
+{
+    left: 875px;
+    top : 125px;
+}
+.box7
+{
+    left: 575px;
+    top : 225px;
+}
+.box8
+{
+    left: 875px;
+    top : 225px;
+}
+.box9
+{
+    left: 575px;
+    top : 325px;
+}
+.box10
+{
+    left: 675px;
+    top : 325px;
+}
+.box11
+{
+    left: 775px;
+    top : 325px;
+}
+.box12
+{
+    left: 875px;
+    top : 325px;
+}
+.mainscreen
+{
+    background-color: aqua;
+}
+.gamescreen
+{
+    background-color: aqua;
+}
+.ranking
+{
+    margin-top: 50%;
+}
