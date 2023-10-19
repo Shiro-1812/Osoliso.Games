@@ -6,6 +6,16 @@
 
 私の名前は<font color=green><strong>Shiro-114514</strong></font>です！お、そうだな(恐怖)
 
+## File構造
+```
+Osoliso.Games
+├─README.md
+├─Startscreen.html
+├─Getchair.osoliso
+│   └many files...
+└─Hideseek.osoliso   
+   └many files...
+```
 ## Osoliso.Gamesのゲーム(羅列)
 - Getchair.soliso (椅子取りゲーム)
 - Hideseek.osoliso(かくれんぼ)、予定
