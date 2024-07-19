@@ -3,7 +3,6 @@ let Besttime = 100000;
 let click_num = Math.floor(Math.random() * 3) + 4
 let oneclick = false;
 let ranking = Array(10);
-let playerName
 ranking.fill();
 //開始がクリックされた
 function main()
@@ -48,7 +47,7 @@ function light_click(pshElem, lightBoxNumber)
         endTime  = new Date();
         document.getElementById(anwer_box).src = "images/chair_sit_me.png";
         let time = endTime - startTime;
-        document.getElementById("time").innerHTML = `前回:${time}[ms]`;
+        document.getElementById("time").innerHTML = `Before:${time}[ms]`;
         isBestTime(time);
 
         //1秒経ったらリセットする
@@ -67,7 +66,7 @@ function light_click(pshElem, lightBoxNumber)
         endTime = new Date();
         document.getElementById(pshElem).src = "images/chair_drop.png"
         let time = endTime - startTime;
-        document.getElementById("time").innerHTML = `前回:${time}[ms]`;
+        document.getElementById("time").innerHTML = `Before:${time}[ms]`;
         //1秒経ったらベストタイムか判定する
         setTimeout(() => {
           isBestTime(time);
@@ -137,7 +136,7 @@ function drawRanking()
   {
     rank = String(i + 1) + "th"
     if(ranking[i] == undefined) continue
-    document.getElementById(rank).textContent = rank + " " + String(ranking[i]) + " ミリ秒"
+    document.getElementById(rank).textContent = `${rank} ${ranking[i]}[ms]`
   }
   
 }

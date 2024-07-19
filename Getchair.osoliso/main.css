@@ -17,9 +17,13 @@
     text-align: center;
     margin: 0%;
 }
+.p
+{
+    margin: auto;
+}
 .ranking
 {
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .chair

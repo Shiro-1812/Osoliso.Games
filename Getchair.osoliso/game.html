@@ -12,18 +12,18 @@
 <body class="gamescreen">
     <div class="header">
         <header>
-            <h1 id="header_title">オソライソGames</h1>
+            <h1 id="header_title">椅子取りゲーム・オソライソ</h1>
         </header>
     </div>
-    <div style="text-align: center;"> 
-        <!---ボタン類--->
-        <div class="btn srt">
-            <a class="button" id="startBtn" onclick="main()">開始</a>
-        </div>
-        <!---タイムと名前入力欄(ランキングのため)--->
-        <span id="time">Null</span>
-        <span id="mybestTime">Null</span>
+    <!---ボタン類--->
+    <div class="btn srt">
+        <a class="button" id="startBtn" onclick="main()">開始</a>
     </div>
+    <!---note--->
+    <p class="p">*バグったらリロードしてください</p>
+    <!---タイムと名前入力欄(ランキングのため)--->
+    <b><span id="time">Null</span></b>
+    <b><span id="mybestTime">Null</span></b>
     <!---game screen--->
     <div class="chair">
         <img id="box1"  src="images/chair.png"  onclick="clk(this)">
@@ -43,7 +43,7 @@
         <img id="box15" src="images/chair.png"  onclick="clk(this)">
         <img id="box16" src="images/chair.png"  onclick="clk(this)">
     </div>
-    <div style="text-align: center;" class="ranking">
+    <div class="ranking">
         <h1>ランキング上位10位</h1>
         <!-------------ランキング画面------------->
         <!--id管理めんどくさいのでth固定にしている-->
