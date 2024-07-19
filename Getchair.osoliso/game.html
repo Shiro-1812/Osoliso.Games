@@ -6,35 +6,33 @@
     <title>Get chair osoliso</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='Button.css'>
     <script src='main.js'></script>
 </head>
 <body class="gamescreen">
     <div style="text-align: center;"> 
         <!---ボタン類--->
-        <button class="button" id="startBtn" onclick="main()">開始</button>
-        <a href="..\Startscreen.html">
-            <input type="button" value="戻る">
-        </a>
+        <div class="btn srt">
+            <a class="button" id="startBtn" onclick="main()">開始</a>
+        </div>
         <!---タイムと名前入力欄(ランキングのため)--->
-        <p id="time">Null</p>
-        <p id="mybestTime">Null</p>
-        <label for="playername">ハンドルネーム(12文字以内)</label><br>
-        <input type="text" id="playername" name="playername" maxlength="12" size="10">
+        <span id="time">Null</span>
+        <span id="mybestTime">Null</span>
     </div>
     <!---game screen--->
-    <div class="hiddencls">
-        <img class="box1"  id="box1"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box2"  id="box2"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box3"  id="box3"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box4"  id="box4"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box5"  id="box5"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box6"  id="box6"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box7"  id="box7"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box8"  id="box8"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box9"  id="box9"  src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box10" id="box10" src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box11" id="box11" src="images/chair.png"  width="100" height="100" onclick="clk(this)">
-        <img class="box12" id="box12" src="images/chair.png"  width="100" height="100" onclick="clk(this)">
+    <div class="chair">
+        <img id="box1"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box2"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box3"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box4"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box5"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box6"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box7"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box8"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box9"  src="images/chair.png"  onclick="clk(this)">
+        <img id="box10" src="images/chair.png"  onclick="clk(this)">
+        <img id="box11" src="images/chair.png"  onclick="clk(this)">
+        <img id="box12" src="images/chair.png"  onclick="clk(this)">
     </div>
     <div style="text-align: center;" class="ranking">
         <h1>ランキング上位10位</h1>

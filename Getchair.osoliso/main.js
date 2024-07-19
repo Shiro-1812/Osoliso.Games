@@ -29,16 +29,12 @@ function execution(lightBoxNumber)
             document.getElementById(box).src = "images/chair_sit.png";  
         }
     }
-    console.log("answer is " + anwer_box);
-    console.log(document.getElementById("box1").src);
 }
 
 //椅子がクリックされた
 function clk(elem)
 {
-    playerName = document.getElementById("playername").value
     let pshElem = elem.id;
-    console.log(pshElem);
     light_click(pshElem, lightBoxNumber);
 }
 
@@ -50,10 +46,9 @@ function light_click(pshElem, lightBoxNumber)
     {
         oneclick = true;
         endTime  = new Date();
-        playerName = document.getElementById("playername").value 
         document.getElementById(anwer_box).src = "images/chair_sit_me.png";
         let time = endTime - startTime;
-        document.getElementById("time").textContent = "前回 " + String(time) + "ミリ秒";
+        document.getElementById("time").innerHTML = `前回:${time}[ms]`;
         isBestTime(time);
 
         //1秒経ったらリセットする
@@ -70,10 +65,9 @@ function light_click(pshElem, lightBoxNumber)
       { 
         oneclick = true;
         endTime = new Date();
-        playerName = document.getElementById("playername").value
         document.getElementById(pshElem).src = "images/chair_drop.png"
         let time = endTime - startTime;
-        document.getElementById("time").textContent = "前回 " + String(time) + "ミリ秒";
+        document.getElementById("time").innerHTML = `前回:${time}[ms]`;
         //1秒経ったらベストタイムか判定する
         setTimeout(() => {
           isBestTime(time);
@@ -90,8 +84,7 @@ function isBestTime(time)
   if(time < Besttime)
   {
       Besttime = time;
-      console.log(Besttime);
-      document.getElementById("mybestTime").textContent = "ベスト " + String(Besttime) + "ミリ秒";
+      document.getElementById("mybestTime").innerHTML = `Best:${Besttime}[ms]`;
   }
 }
 
