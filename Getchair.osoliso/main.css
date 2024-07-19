@@ -1,3 +1,27 @@
+/* Header style*/
+.header {
+    background-color:#1d2020;
+}
+#header_title {
+    color: #ffffff;
+    margin-top: 0%;
+}
+
+.mainscreen
+{
+    background-color: aqua;
+}
+.gamescreen
+{
+    background-color: aqua;
+    text-align: center;
+    margin: 0%;
+}
+.ranking
+{
+    margin-top: 10%;
+}
+
 .chair
 {
     display: flex;
@@ -15,16 +39,4 @@
     position  : relative;
     width     : 100px;
     height    : 100px;
-}
-.mainscreen
-{
-    background-color: aqua;
-}
-.gamescreen
-{
-    background-color: aqua;
-}
-.ranking
-{
-    margin-top: 10%;
 }

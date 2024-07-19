@@ -11,7 +11,7 @@ function main()
     document.getElementById("startBtn").disabled = true;
     //1秒間時間を止め、処理を行う
     setTimeout(() => {
-        lightBoxNumber = Math.floor(Math.random() * 12) + 1;
+        lightBoxNumber = Math.floor(Math.random() * 16) + 1;
         execution(lightBoxNumber);  
         startTime = new Date(); 
     },1000);
@@ -21,7 +21,7 @@ function main()
 function execution(lightBoxNumber)
 {
     let anwer_box = "box" + String(lightBoxNumber);
-    for(i = 1; i < 13; i++)
+    for(i = 1; i < 17; i++)
     {
         let box = "box" + String(i)
         if(anwer_box != box)
@@ -92,7 +92,7 @@ function isBestTime(time)
 function reset(time)
 {
   makeRanking(time);
-  for(i = 1; i < 13; i++)
+  for(i = 1; i < 17; i++)
   {
     box = "box" + String(i);
     document.getElementById(box).src = "images/chair.png";
