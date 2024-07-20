@@ -21,7 +21,7 @@ function execution(lightBoxNumber)
     let anwer_box = `box${lightBoxNumber}`;
     for(i = 1; i < 17; i++)
     {
-        let box = "box" + String(i)
+        let box = `box${i}`;
         if(anwer_box != box)
         {
             document.getElementById(box).src = "images/chair_sit.png";  
@@ -39,20 +39,20 @@ function clk(elem)
 //椅子がクリックされた処理、ぶっちゃけclk()に書いてもよかった気がする。
 function light_click(pshElem, lightBoxNumber)
 {
-  let anwer_box = `box${lightBoxNumber}`;
-  if( pshElem == anwer_box && oneclick != true)
+  let answer_box = `box${lightBoxNumber}`;
+  if( pshElem == answer_box && oneclick != true)
   {
       oneclick = true;
       endTime  = new Date();
-      document.getElementById(anwer_box).src = "images/chair_sit_me.png";
+      document.getElementById(answer_box).src = "images/chair_sit_me.png";
       let time = endTime - startTime;
       document.getElementById("time").innerHTML = `Before:${time}[ms]`;
       isBestTime(time);
-      //0.1秒経ったらリセットする
+      //0.5秒経ったらリセットする
       setTimeout(() => {
           oneclick = false;
           reset(time);
-      },100);
+      },500);
   }
 }
 
@@ -78,45 +78,42 @@ function reset(time)
   click_num = Math.floor(Math.random() * 3) + 4;
 }
 
-
 //ここからランキング作製
 //配列管理で
 function makeRanking(time)
 {
-  for(i = 0; i < 10; i++)
-  {
+for(i = 0; i < 10; i++)
+{
     if(ranking[i] == undefined)
     {
-      ranking[i] = time;
-      break;
+        ranking[i] = time;
+        break;
     }
     else if(ranking[i] < time)
     {
-      continue;
+        continue;
     }
     else if(ranking[i] > time)
     {
-      ranking.splice(i, 0, time);
-      break;
+        ranking.splice(i, 0, time);
+        break;
     }
-  }
-  if(ranking.length != 10)
-  {
+}
+if(ranking.length != 10)
     ranking.length = 10;
-  }
-  drawRanking()
+
+drawRanking()
 }
 
-//jsonファイルへ変換する
 function drawRanking()
 {
-  for(i = 0; i < 10; i++)
-  {
-    rank = String(i + 1) + "th"
-    if(ranking[i] == undefined) continue
-    document.getElementById(rank).textContent = `${rank} ${ranking[i]}[ms]`
-  }
-  
+for(i = 0; i < 10; i++)
+{
+    if(ranking[i] == undefined) 
+        continue;
+    document.getElementById(`${i + 1}th`).textContent = `${i + 1}th:${ranking[i]}[ms]`
+}
+
 }
 
 
