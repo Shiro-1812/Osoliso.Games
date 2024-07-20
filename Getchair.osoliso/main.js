@@ -7,7 +7,6 @@ ranking.fill();
 //開始がクリックされた
 function main()
 {
-\
     //1秒間時間を止め、処理を行う
     setTimeout(() => {
         lightBoxNumber = Math.floor(Math.random() * 16) + 1;
