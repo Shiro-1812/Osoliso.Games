@@ -1,6 +1,6 @@
 //初期設定
 let Besttime = 100000;
-let click_num = Math.floor(Math.random() * 3) + 4
+let click_num = Math.floor(Math.random() * 3) + 4;
 let oneclick = false;
 let ranking = Array(10);
 ranking.fill();
