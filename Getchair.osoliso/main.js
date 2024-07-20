@@ -7,7 +7,7 @@ ranking.fill();
 //開始がクリックされた
 function main()
 {
-    document.getElementById("startBtn").disabled = true;
+\
     //1秒間時間を止め、処理を行う
     setTimeout(() => {
         lightBoxNumber = Math.floor(Math.random() * 16) + 1;
@@ -19,7 +19,7 @@ function main()
 //答えに合わせて画像を差し替える
 function execution(lightBoxNumber)
 {
-    let anwer_box = "box" + String(lightBoxNumber);
+    let anwer_box = `box${lightBoxNumber}`;
     for(i = 1; i < 17; i++)
     {
         let box = "box" + String(i)
@@ -40,43 +40,23 @@ function clk(elem)
 //椅子がクリックされた処理、ぶっちゃけclk()に書いてもよかった気がする。
 function light_click(pshElem, lightBoxNumber)
 {
-    let anwer_box = "box" + String(lightBoxNumber);
-    if( pshElem == anwer_box && document.getElementById("startBtn").disabled == true && oneclick != true)
-    {
-        oneclick = true;
-        endTime  = new Date();
-        document.getElementById(anwer_box).src = "images/chair_sit_me.png";
-        let time = endTime - startTime;
-        document.getElementById("time").innerHTML = `Before:${time}[ms]`;
-        isBestTime(time);
-
-        //1秒経ったらリセットする
-        setTimeout(() => {
-            oneclick = false;
-            reset(time);
-        },1000);
-    }
-    //4~6回クリックすると座っている人を蹴落とせる
-    else if(document.getElementById("startBtn").disabled == true)
-    {
-      click_num -= 1;
-      if(click_num < 0 && oneclick != true)
-      { 
-        oneclick = true;
-        endTime = new Date();
-        document.getElementById(pshElem).src = "images/chair_drop.png"
-        let time = endTime - startTime;
-        document.getElementById("time").innerHTML = `Before:${time}[ms]`;
-        //1秒経ったらベストタイムか判定する
-        setTimeout(() => {
-          isBestTime(time);
+  let anwer_box = `box${lightBoxNumber}`;
+  if( pshElem == anwer_box && oneclick != true)
+  {
+      oneclick = true;
+      endTime  = new Date();
+      document.getElementById(anwer_box).src = "images/chair_sit_me.png";
+      let time = endTime - startTime;
+      document.getElementById("time").innerHTML = `Before:${time}[ms]`;
+      isBestTime(time);
+      //0.1秒経ったらリセットする
+      setTimeout(() => {
           oneclick = false;
           reset(time);
-
-        },1000);
-      }
-    }
+      },100);
+  }
 }
+
 function isBestTime(time)
 {
   //今回のタイムがベストタイムなら書き換える
@@ -93,11 +73,10 @@ function reset(time)
   makeRanking(time);
   for(i = 1; i < 17; i++)
   {
-    box = "box" + String(i);
+    box = `box${i}`;
     document.getElementById(box).src = "images/chair.png";
   }
-  click_num = Math.floor(Math.random() * 3) + 4
-  document.getElementById("startBtn").disabled  = false;
+  click_num = Math.floor(Math.random() * 3) + 4;
 }
 
 
