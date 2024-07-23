@@ -39,43 +39,43 @@ function clk(elem)
 //椅子がクリックされた処理、ぶっちゃけclk()に書いてもよかった気がする。
 function light_click(pshElem, lightBoxNumber)
 {
-  let answer_box = `box${lightBoxNumber}`;
-  if( pshElem == answer_box && oneclick != true)
-  {
-      oneclick = true;
-      endTime  = new Date();
-      document.getElementById(answer_box).src = "images/chair_sit_me.png";
-      let time = endTime - startTime;
-      document.getElementById("time").innerHTML = `Before:${time}[ms]`;
-      isBestTime(time);
-      //0.5秒経ったらリセットする
-      setTimeout(() => {
-          oneclick = false;
-          reset(time);
-      },500);
-  }
+    let answer_box = `box${lightBoxNumber}`;
+    if( pshElem == answer_box && oneclick != true)
+    {
+        oneclick = true;
+        endTime  = new Date();
+        document.getElementById(answer_box).src = "images/chair_sit_me.png";
+        let time = endTime - startTime;
+        document.getElementById("time").innerHTML = `Before:${time}[ms]`;
+        isBestTime(time);
+        //0.5秒経ったらリセットする
+        setTimeout(() => {
+            oneclick = false;
+            reset(time);
+        },500);
+    }
 }
 
 function isBestTime(time)
 {
   //今回のタイムがベストタイムなら書き換える
-  if(time < Besttime)
-  {
-      Besttime = time;
-      document.getElementById("mybestTime").innerHTML = `Best:${Besttime}[ms]`;
-  }
+    if(time < Besttime)
+    {
+        Besttime = time;
+        document.getElementById("mybestTime").innerHTML = `Best:${Besttime}[ms]`;
+    }
 }
 
 //リセットする
 function reset(time)
 {
-  makeRanking(time);
-  for(i = 1; i < 17; i++)
-  {
-    box = `box${i}`;
-    document.getElementById(box).src = "images/chair.png";
-  }
-  click_num = Math.floor(Math.random() * 3) + 4;
+    makeRanking(time);
+    for(i = 1; i < 17; i++)
+    {
+        box = `box${i}`;
+        document.getElementById(box).src = "images/chair.png";
+    }
+    click_num = Math.floor(Math.random() * 3) + 4;
 }
 
 //ここからランキング作製

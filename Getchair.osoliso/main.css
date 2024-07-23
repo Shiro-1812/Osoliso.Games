@@ -17,13 +17,17 @@
     text-align: center;
     margin: 0%;
 }
+.mainboard
+{
+    display: flex;
+}
 .p
 {
     margin: auto;
 }
 .ranking
 {
-    margin-top: 5%;
+    margin: auto;
 }
 
 .chair
