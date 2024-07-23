@@ -1,12 +1,16 @@
 /* Header style*/
 .header {
+    display: flex;
+    text-align: center;
     background-color:#1d2020;
 }
 #header_title {
     color: #ffffff;
     margin-top: 0%;
 }
-
+.bck {
+    margin-right: 25%;
+}
 .mainscreen
 {
     background-color: aqua;

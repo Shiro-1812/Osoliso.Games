@@ -1,3 +1,22 @@
+/* Header style*/
+.header {
+    display: flex;
+    text-align: center;
+    background-color:#1d2020;
+}
+#header_title {
+    color: #ffffff;
+    margin-top: 0%;
+}
+.screen {
+    background-color: aqua;
+    text-align: center;
+    margin: auto;
+}
 .mainscreen {
-    background-color: darkgrey;
+    display: flex;
+    justify-content: center;
+}
+.btn {
+    flex-direction: column;
 }
