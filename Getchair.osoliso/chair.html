@@ -34,13 +34,19 @@
             <div class="popup">
             <label class="close-button" for="popupFlag1">×</label>
             <div class="content">
-                <h3>ゲームの遊び方</h3>
-                <img src="images/chair.png">
+                <h2>ゲームの遊び方</h2>
+                <img src="images/chair.png" height="100" width="100">
+                <ol>
+                    <li>「ゲームの開始」をクリックします(1秒待ちます)</li>
+                    <li>誰も座っていない椅子をクリック</li>
+                    <li>押した速さを競う</li>
+                </ol>
+                <p>*変な動作したら「ゲームをリセット」をクリック</p>
             </div>
     </div> 
     </div> 
     <!---note--->
-    <p class="p">*バグったらリセットしてください</p>
+    <p class="p" id="p">*バグったらリセットしてください</p>
     <!---push time--->
     <b><span id="time">Before:Null[ms]</span></b>
     <b><span id="mybestTime">Best:Null[ms]</span></b>

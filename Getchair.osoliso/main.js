@@ -7,10 +7,12 @@ ranking.fill();
 //開始がクリックされた
 function main()
 {
+    document.getElementById('p').innerHTML = "よーい";
     //1秒間時間を止め、処理を行う
     setTimeout(() => {
         lightBoxNumber = Math.floor(Math.random() * 16) + 1;
-        execution(lightBoxNumber);  
+        execution(lightBoxNumber);
+        document.getElementById('p').innerHTML = "スタート";
         startTime = new Date(); 
     },1000);
 }
@@ -52,6 +54,7 @@ function light_click(pshElem, lightBoxNumber)
         setTimeout(() => {
             oneclick = false;
             reset(time);
+            document.getElementById('p').innerHTML = "*バグったらリセットしてください";
         },500);
     }
 }
@@ -76,7 +79,6 @@ function reset(time)
         document.getElementById(box).src = "images/chair.png";
     }
     click_num = Math.floor(Math.random() * 3) + 4;
-    document.getElementById("button").ariaDisabled = true;
 }
 
 //ここからランキング作製

@@ -14,8 +14,8 @@
 }
 .popup{
     /*position size*/
-    --height : 300px;
-    --width : 300px;
+    --height : 500px;
+    --width : 500px;
     z-index : 101;
     position: fixed;
     top : calc(50vh - calc(var(--height) / 2));
