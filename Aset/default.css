@@ -1,0 +1,22 @@
+/* Header style*/
+.header {
+    display: flex;
+    text-align: center;
+    background-color:#1d2020;
+}
+#header_title {
+    color: #ffffff;
+    margin-top: 0%;
+    align-items: center;
+}
+
+.bck {
+    margin-right: 25%;
+}
+/* Page-wide default settings */
+.mainscreen
+{
+    background-color: aqua;
+    text-align: center;
+    margin: 0%;
+}

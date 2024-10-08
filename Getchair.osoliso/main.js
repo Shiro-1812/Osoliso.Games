@@ -76,6 +76,7 @@ function reset(time)
         document.getElementById(box).src = "images/chair.png";
     }
     click_num = Math.floor(Math.random() * 3) + 4;
+    document.getElementById("button").ariaDisabled = true;
 }
 
 //ここからランキング作製

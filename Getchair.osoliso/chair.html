@@ -7,9 +7,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../Aset/Button.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../Aset/default.css'>
     <script src='main.js'></script>
 </head>
-<body class="gamescreen">
+<body class="mainscreen">
     <div class="header">
         <div class="btn bck">
             <a href="../Startscreen.html">戻る</a>
@@ -18,16 +19,16 @@
             <h1 id="header_title">椅子取りゲーム・オソライソ</h1>
         </header>
     </div>
-    <!---ボタン類--->
+    <!---anything button--->
     <div class="btn srt">
-        <a class="button" id="startBtn" onclick="main()">開始</a>
-        <a class="button" id="startBtn" onclick="reset()">リセット</a>
-    </div>
+        <a onclick="main()">開始</a>
+        <a onclick="reset()">リセット</a>
+    </div> 
     <!---note--->
-    <p class="p">*バグったらリロードしてください</p>
-    <!---タイムと名前入力欄(ランキングのため)--->
-    <b><span id="time">Null</span></b>
-    <b><span id="mybestTime">Null</span></b>
+    <p class="p">*バグったらリセットしてください</p>
+    <!---push time--->
+    <b><span id="time">Before:Null[ms]</span></b>
+    <b><span id="mybestTime">Best:Null[ms]</span></b>
     <!---game screen--->
     <div class="mainboard">
         <div class="chair">
