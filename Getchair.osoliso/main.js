@@ -1,8 +1,8 @@
 //初期設定
 let Besttime = 100000;
 let click_num = Math.floor(Math.random() * 3) + 4;
-let oneclick = false;
-let isEndGame = false;
+let oneclick = false;　//答えを一回しかクリック出来ない
+let isEndGame = false; //ゲームが終わった後も答えをクリック出来ないようにする
 let ranking = Array(10);
 ranking.fill();
 //開始がクリックされた
