@@ -2,11 +2,13 @@
 let Besttime = 100000;
 let click_num = Math.floor(Math.random() * 3) + 4;
 let oneclick = false;
+let isEndGame = false;
 let ranking = Array(10);
 ranking.fill();
 //開始がクリックされた
 function main()
 {
+    isEndGame = true;
     document.getElementById('p').innerHTML = "よーい";
     //1秒間時間を止め、処理を行う
     setTimeout(() => {
@@ -42,7 +44,7 @@ function clk(elem)
 function light_click(pshElem, lightBoxNumber)
 {
     let answer_box = `box${lightBoxNumber}`;
-    if( pshElem == answer_box && oneclick != true)
+    if( pshElem == answer_box && !oneclick && isEndGame)
     {
         oneclick = true;
         endTime  = new Date();
@@ -53,6 +55,7 @@ function light_click(pshElem, lightBoxNumber)
         //0.5秒経ったらリセットする
         setTimeout(() => {
             oneclick = false;
+            isEndGame = false;
             reset(time);
             document.getElementById('p').innerHTML = "*バグったらリセットしてください";
         },500);
