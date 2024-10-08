@@ -1,11 +1,15 @@
 .mainboard
 {
     display: flex;
+    background-color: forestgreen;
+    border: solid 10px aquamarine;
+    margin: 0% 10% 10% 10%;
 }
 .p
 {
     margin: auto;
 }
+
 .ranking
 {
     margin: auto;
@@ -15,9 +19,9 @@
 {
     display: flex;
     text-align: center;
+    align-items: center;
     flex-wrap: wrap;
     position: relative;
-    align-items: center;
     width     : 400px;
     margin: auto;
 }

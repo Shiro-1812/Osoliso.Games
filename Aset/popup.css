@@ -1,0 +1,68 @@
+/*popup template design*/
+.popup-background{
+    /*position size*/
+    position: fixed;
+    z-index : 100;
+    top : 0;
+    left : 0;
+    height : 100vh;
+    width : 100vw;
+
+    /*design*/
+    background-color: gray;
+    opacity : 0.5
+}
+.popup{
+    /*position size*/
+    --height : 300px;
+    --width : 300px;
+    z-index : 101;
+    position: fixed;
+    top : calc(50vh - calc(var(--height) / 2));
+    left : calc(50vw - calc(var(--width) / 2));
+    height : var(--height);
+    width : var(--width);
+
+    /*design*/
+    overflow: hidden;
+    background-color: white;
+}
+.popup > .close-button{
+    /*position size*/
+    --size : 20px;
+    position:absolute;
+    top : calc(var(--size)/4);
+    left : calc(var(--width) - var(--size) * 5/4);/*css variables are available in children*/
+    height : var(--size);
+    width : var(--size);
+
+    /*design*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color : gray;
+    font-size: var(--size);
+    border-radius: calc(var(--size)/5);
+}
+.popup > .close-button:hover{
+    /*design*/
+    background-color: red;
+    color : white;
+}
+.popup > .content{
+    padding: 10px;
+    text-align: center;
+}
+
+
+/*hide popup*/
+.popup-flag{
+    display:none;
+}
+.popup-flag:not(:checked) + .popup-background{
+    display:none;
+}
+.popup-flag:not(:checked) + * + .popup{
+    display:none;
+}

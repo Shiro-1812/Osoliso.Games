@@ -7,6 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../Aset/Button.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../Aset/popup.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../Aset/default.css'>
     <script src='main.js'></script>
 </head>
@@ -21,8 +22,22 @@
     </div>
     <!---anything button--->
     <div class="btn srt">
-        <a onclick="main()">開始</a>
-        <a onclick="reset()">リセット</a>
+        <a onclick="main()">ゲームを開始</a>
+        <a onclick="reset()">ゲームをリセット</a>
+        
+        <!--popup-open-button-->
+        <a><label for="popupFlag1">ゲームの遊び方</label></a>
+        
+            <!--popup-template-->
+            <input type="checkbox" class="popup-flag" id="popupFlag1">
+            <label class="popup-background" for="popupFlag1"></label>
+            <div class="popup">
+            <label class="close-button" for="popupFlag1">×</label>
+            <div class="content">
+                <h3>ゲームの遊び方</h3>
+                <img src="images/chair.png">
+            </div>
+    </div> 
     </div> 
     <!---note--->
     <p class="p">*バグったらリセットしてください</p>
@@ -53,16 +68,16 @@
             <h1>ランキング上位10位</h1>
             <!-------------ランキング画面------------->
             <!--id管理めんどくさいのでth固定にしている-->
-            <p id="1th"></p>
-            <p id="2th"></p>
-            <p id="3th"></p>
-            <p id="4th"></p>
-            <p id="5th"></p>
-            <p id="6th"></p>
-            <p id="7th"></p>
-            <p id="8th"></p>
-            <p id="9th"></p>
-            <p id="10th"></p>
+            <p id="1th">.</p>
+            <p id="2th">.</p>
+            <p id="3th">.</p>
+            <p id="4th">.</p>
+            <p id="5th">.</p>
+            <p id="6th">.</p>
+            <p id="7th">.</p>
+            <p id="8th">.</p>
+            <p id="9th">.</p>
+            <p id="10th">.</p>
     </div>
 </div>
 </body>
