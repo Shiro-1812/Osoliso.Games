@@ -5,16 +5,28 @@ let oneclick = false;　//答えを一回しかクリック出来ない
 let isEndGame = false; //ゲームが終わった後も答えをクリック出来ないようにする
 let ranking = Array(10);
 ranking.fill();
+
+// getElementById
+const startbutton = document.getElementById("startbutton");
+const p = document.getElementById('p');
+const gettime = document.getElementById("time");
+const mybestTime = document.getElementById("mybestTime");
+
 //開始がクリックされた
 function main()
 {
     isEndGame = true;
-    document.getElementById('p').innerHTML = "よーい";
+    //css 追加
+    startbutton.style = ` 
+        opacity:0.2;
+        pointer-events:none;
+    `;
+    p.innerHTML = "よーい";
     //1秒間時間を止め、処理を行う
     setTimeout(() => {
         lightBoxNumber = Math.floor(Math.random() * 16) + 1;
         execution(lightBoxNumber);
-        document.getElementById('p').innerHTML = "スタート";
+        p.innerHTML = "スタート";
         startTime = new Date(); 
     },1000);
 }
@@ -50,14 +62,14 @@ function light_click(pshElem, lightBoxNumber)
         endTime  = new Date();
         document.getElementById(answer_box).src = "images/chair_sit_me.png";
         let time = endTime - startTime;
-        document.getElementById("time").innerHTML = `Before:${time}[ms]`;
+        gettime.innerHTML = `Before:${time}[ms]`;
         isBestTime(time);
         //0.5秒経ったらリセットする
         setTimeout(() => {
             oneclick = false;
             isEndGame = false;
             reset(time);
-            document.getElementById('p').innerHTML = "*バグったらリセットしてください";
+            p.innerHTML = "*バグったらリセットしてください";
         },500);
     }
 }
@@ -68,7 +80,7 @@ function isBestTime(time)
     if(time < Besttime)
     {
         Besttime = time;
-        document.getElementById("mybestTime").innerHTML = `Best:${Besttime}[ms]`;
+        mybestTime.innerHTML = `Best:${Besttime}[ms]`;
     }
 }
 
@@ -82,6 +94,11 @@ function reset(time)
         document.getElementById(box).src = "images/chair.png";
     }
     click_num = Math.floor(Math.random() * 3) + 4;
+    //css 削除
+    startbutton.style -= ` 
+        opacity:0.2;
+        pointer-events:none;
+    `;
 }
 
 //ここからランキング作製

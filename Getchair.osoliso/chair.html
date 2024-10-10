@@ -9,7 +9,6 @@
     <link rel='stylesheet' type='text/css' media='screen' href='../Aset/Button.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../Aset/popup.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../Aset/default.css'>
-    <script src='main.js'></script>
 </head>
 <body class="mainscreen">
     <div class="header">
@@ -22,7 +21,7 @@
     </div>
     <!---anything button--->
     <div class="btn srt">
-        <a onclick="main()">ゲームを開始</a>
+        <a onclick="main()" id="startbutton">ゲームを開始</a>
         <a onclick="reset()">ゲームをリセット</a>
         
         <!--popup-open-button-->
@@ -31,19 +30,19 @@
             <!--popup-template-->
             <input type="checkbox" class="popup-flag" id="popupFlag1">
             <label class="popup-background" for="popupFlag1"></label>
-            <div class="popup">
-            <label class="close-button" for="popupFlag1">×</label>
-            <div class="content">
-                <h2>ゲームの遊び方</h2>
-                <img src="images/chair.png" height="100" width="100">
-                <ol>
-                    <li>「ゲームの開始」をクリックします(1秒待ちます)</li>
-                    <li>誰も座っていない椅子をクリック</li>
-                    <li>押した速さを競う</li>
-                </ol>
-                <p>*変な動作したら「ゲームをリセット」をクリック</p>
-            </div>
-    </div> 
+                <div class="popup">
+                <label class="close-button" for="popupFlag1">×</label>
+                <div class="content">
+                    <h2>ゲームの遊び方</h2>
+                    <img src="images/chair.png" height="100" width="100">
+                    <ol>
+                        <li>「ゲームの開始」をクリックします(1秒待ちます)</li>
+                        <li>誰も座っていない椅子をクリック</li>
+                        <li>押した速さを競う</li>
+                    </ol>
+                    <p>*変な動作したら「ゲームをリセット」をクリック</p>
+                </div>
+            </div> 
     </div> 
     <!---note--->
     <p class="p" id="p">*バグったらリセットしてください</p>
@@ -87,4 +86,6 @@
     </div>
 </div>
 </body>
+<!---表示を完了したらmain.jsを読み込む--->
+<script src='main.js'></script>
 </html>

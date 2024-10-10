@@ -1,0 +1,22 @@
+.checkbox-border{
+    margin: auto;
+    height: 50px;
+    width: 100px;
+    border: solid 5px gray;
+    border-radius: 100px;
+    background-color: aquamarine;
+}
+
+.checkbox-move{
+    float: left;
+    height: 50px;
+    width: 50px;
+    background-color: whitesmoke;
+    border-radius: 100px;
+}
+
+[type="checkbox"] {display: none;}
+[type="checkbox"]:checked + .checkbox-move{
+    float: right;
+    background-color: blue;
+}

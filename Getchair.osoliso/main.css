@@ -9,15 +9,31 @@
 {
     margin: auto;
 }
+
+/* ranking style */
 .ranking
 {
     margin: auto;
 }
+.ranking p{
+    font-weight: bold;
+    border-bottom: solid 2px whitesmoke;
+}
 
+.ranking p:nth-child(2){
+    color: gold;
+}
+.ranking p:nth-child(3){
+    color: silver;
+}
+.ranking p:nth-child(4){
+    color: brown;
+}
+
+/* chair setting */
 .chair
 {
     display: flex;
-    text-align: center;
     align-items: center;
     flex-wrap: wrap;
     position: relative;
@@ -32,4 +48,9 @@
     width     : 100px;
     height    : 100px;
     pointer-events: visibleStroke;
+}
+
+/* button style */
+.srt a{
+    border-radius: 100px;
 }
