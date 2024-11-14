@@ -9,12 +9,14 @@ const CANVAS_2D = CANVAS.getContext('2d');
 
 const FIELD_WIDTH = BLOCK_SIZE * PLAY_WIDTH;
 const FIELD_HEIGHT = BLOCK_SIZE * PLAY_HEIGHT;
+const SUB_WIDTH = FIELD_WIDTH + BLOCK_SIZE;
+const SUB_TEXT = SUB_WIDTH + HOLD_SIZE / 2;
 CANVAS.width = FIELD_HEIGHT;
 CANVAS.height = FIELD_HEIGHT;
 
 //draw Points
 let points = 0;
-CANVAS_2D.font = "40px 'Meiryo UI'";
+
 CANVAS_2D.fillStyle = 'red';
 CANVAS_2D.fillText(`${points}`, 100, 100);
 
@@ -89,10 +91,22 @@ const dropSpeed = 500;
 let isGameOver = false;
 
 // draw static screen
-function draw_init_()
+function drawHoldScreen()
 {
     CANVAS_2D.fillStyle = 'black';
-    CANVAS_2D.fillRect( FIELD_WIDTH + BLOCK_SIZE, 0, (TETRIS_SIZE + 2)* HOLD_SIZE, (TETRIS_SIZE + 2) * HOLD_SIZE);
+    CANVAS_2D.fillRect(SUB_WIDTH, 0, (TETRIS_SIZE + 2)* HOLD_SIZE, (TETRIS_SIZE + 2) * HOLD_SIZE);
+    CANVAS_2D.font = "bold 15px 'Meiryo UI'";
+    CANVAS_2D.fillText("_HOLD_", SUB_TEXT, (TETRIS_SIZE + 3)* HOLD_SIZE);
+}
+
+function drawPointScreen()
+{
+    CANVAS_2D.fillStyle = 'black';
+    CANVAS_2D.fillRect(SUB_WIDTH, (TETRIS_SIZE + 4)* HOLD_SIZE, (TETRIS_SIZE + 2) * HOLD_SIZE, HOLD_SIZE * 2);
+    CANVAS_2D.font = "bold 15px 'Meiryo UI'";
+    CANVAS_2D.fillText("_LINE_", SUB_TEXT, (TETRIS_SIZE + 7)* HOLD_SIZE);
+    CANVAS_2D.fillStyle = 'white';
+    CANVAS_2D.fillText(`${points}`, SUB_TEXT, (TETRIS_SIZE + 5.5)* HOLD_SIZE);
 }
 
 // draw dynamic screen 
@@ -129,6 +143,7 @@ function drawPlayScreen()
             const width = CANVAS_2D.measureText(GAME_OVER_MESSAGE).width;
             const x = FIELD_WIDTH / 2 - width / 2;
             const y = FIELD_HEIGHT / 2 - 20;
+            CANVAS_2D.font = "40px 'Meiryo UI'";
             CANVAS_2D.fillStyle = 'red';
             CANVAS_2D.fillText(GAME_OVER_MESSAGE, x, y);
         }
@@ -258,7 +273,7 @@ function hasHold(minoType)
 
 function hold(minoType)
 {
-    draw_init_();
+    drawHoldScreen();
     for(let y = 0; y < TETRIS_SIZE; y++)
     {
         for(let x = 0; x < TETRIS_SIZE; x++)
@@ -310,7 +325,8 @@ function clearLine()
                     screen[newY][newX] = screen[newY - 1][newX];
                 }
             }
-            points += 1000;
+            points += 1;
+            drawPointScreen();
         }
     }
 }
@@ -357,8 +373,8 @@ function init(){
         }
     }    
 
-    draw_init_();
-
+    drawHoldScreen();
+    drawPointScreen();
     minoPosition();
     setInterval(dropMino, dropSpeed);
     drawPlayScreen();
