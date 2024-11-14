@@ -52,5 +52,12 @@
 
 /* button style */
 .srt a{
+    width: 300px;
+    height: 60px;
     border-radius: 100px;
+}
+
+.srt .how-div {
+    margin: 0%;
+    width: 100px;
 }

@@ -17,7 +17,8 @@ function main()
 {
     isEndGame = true;
     //css 追加
-    startbutton.style = ` 
+    startbutton.style =
+    ` 
         opacity:0.2;
         pointer-events:none;
     `;
