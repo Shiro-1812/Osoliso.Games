@@ -73,9 +73,16 @@ let mino_type = [
 
 const minoColors = ['','red','green','orange','blue','aqua','purple']
 
+let blockArray = [1, 2, 3, 4, 5, 6, 7];
+let ArrayNumber = 0;
+
 // gets random tetroMino 
-let randMino = Math.floor(Math.random() * (mino_type.length - 1)) + 1;
-let tetroMino = mino_type[randMino];
+let randArray = Math.floor(Math.random() * 5040);
+let nextMino = n_P_k(blockArray, blockArray.length);
+let minoLoop = nextMino[randArray];
+let crrentMino = minoLoop[ArrayNumber];
+let nextMinoLoop = [];
+let tetroMino = mino_type[crrentMino];
 
 let beforeHoldMino = undefined;
 let isHold = false;
@@ -90,11 +97,31 @@ const dropSpeed = 500;
 // Is Game End?
 let isGameOver = false;
 
+function n_P_k(arr, n) 
+{
+    let ans = []
+    if (n === 1) {
+        for (let i = 0; i < arr.length; i++) {
+            ans[i] = [arr[i]]
+        }
+    } else {
+        for (let i = 0; i < arr.length; i++) {
+            let parts = arr.slice(0)
+            parts.splice(i, 1)[0]
+            let row = n_P_k(parts, n - 1)
+            for (let j = 0; j < row.length; j++) {
+                ans.push([arr[i]].concat(row[j]))
+            }
+        }
+    }
+    return ans;
+}
+
 // draw static screen
 function drawHoldScreen()
 {
     CANVAS_2D.fillStyle = 'black';
-    CANVAS_2D.fillRect(SUB_WIDTH, 0, (TETRIS_SIZE + 2)* HOLD_SIZE, (TETRIS_SIZE + 2) * HOLD_SIZE);
+    CANVAS_2D.fillRect(SUB_WIDTH, 0, (TETRIS_SIZE + 2) * HOLD_SIZE, (TETRIS_SIZE + 2) * HOLD_SIZE);
     CANVAS_2D.font = "bold 15px 'Meiryo UI'";
     CANVAS_2D.fillText("_HOLD_", SUB_TEXT, (TETRIS_SIZE + 3)* HOLD_SIZE);
 }
@@ -109,12 +136,20 @@ function drawPointScreen()
     CANVAS_2D.fillText(`${points}`, SUB_TEXT, (TETRIS_SIZE + 5.5)* HOLD_SIZE);
 }
 
+function drawnextMinoScreen()
+{
+    CANVAS_2D.fillStyle = 'black';
+    CANVAS_2D.fillRect(SUB_WIDTH, (TETRIS_SIZE + 10) * HOLD_SIZE, (TETRIS_SIZE + 2)* HOLD_SIZE, (TETRIS_SIZE + 2)* HOLD_SIZE)
+    CANVAS_2D.font = "bold 15px 'Meiryo UI'";
+    CANVAS_2D.fillText("_NEXT_", SUB_TEXT, (TETRIS_SIZE + 15)* HOLD_SIZE);
+}   
+
 // draw dynamic screen 
 function drawPlayScreen()
 {
     CANVAS_2D.fillStyle = 'black';
     CANVAS_2D.fillRect(0, 0, FIELD_WIDTH, FIELD_HEIGHT);
-
+    // draw Field
     for(let y = 0; y < PLAY_HEIGHT; y++)
     {
         for(let x = 0; x < PLAY_WIDTH; x++)
@@ -125,23 +160,22 @@ function drawPlayScreen()
             }
         }
     }     
-
+    // draw moving mino
     for(let y = 0; y < TETRIS_SIZE; y++)
     {
         for(let x = 0; x < TETRIS_SIZE; x++)
         {
             if(tetroMino[y][x])
             {
-                drawBlock( tetroMinoMoveX + x, tetroMinoMoveY + y, randMino);
+                drawBlock( tetroMinoMoveX + x, tetroMinoMoveY + y, crrentMino);
             }
         }
     }
-
     if(isGameOver)
         {
             const GAME_OVER_MESSAGE = 'GAME OVER';
             const width = CANVAS_2D.measureText(GAME_OVER_MESSAGE).width;
-            const x = FIELD_WIDTH / 2 - width / 2;
+            const x = FIELD_WIDTH / 4 - width / 2;
             const y = FIELD_HEIGHT / 2 - 20;
             CANVAS_2D.font = "40px 'Meiryo UI'";
             CANVAS_2D.fillStyle = 'red';
@@ -165,9 +199,19 @@ function drawHold(x, y, color)
     let drawX = x * HOLD_SIZE;
     let drawY = y * HOLD_SIZE;
     CANVAS_2D.fillStyle = minoColors[color];
-    CANVAS_2D.fillRect(FIELD_WIDTH + BLOCK_SIZE + drawX, drawY, HOLD_SIZE, HOLD_SIZE);
+    CANVAS_2D.fillRect(SUB_TEXT + drawX, drawY, HOLD_SIZE, HOLD_SIZE);
     CANVAS_2D.strokeStyle = 'black';
-    CANVAS_2D.strokeRect(FIELD_WIDTH + BLOCK_SIZE + drawX, drawY, HOLD_SIZE, HOLD_SIZE);
+    CANVAS_2D.strokeRect(SUB_TEXT + drawX, drawY, HOLD_SIZE, HOLD_SIZE);
+}
+
+function drawNextMino(x, y, color)
+{
+    let drawX = x * HOLD_SIZE;
+    let drawY = y * HOLD_SIZE;
+    CANVAS_2D.fillStyle = minoColors[color];
+    CANVAS_2D.fillRect(SUB_TEXT + drawX, drawY, HOLD_SIZE, HOLD_SIZE);
+    CANVAS_2D.strokeStyle = 'black';
+    CANVAS_2D.strokeRect(SUB_TEXT + drawX, drawY, HOLD_SIZE, HOLD_SIZE);
 }
 
 function canMove(moveX, moveY, newMino = tetroMino) {
@@ -241,23 +285,26 @@ document.onkeydown = (e) => {
             }
             break;
         case 'KeyH':
-            hasHold(randMino);
+            hasHold(crrentMino);
         break;
-
+        case 'KeyO':
+            isGameOver = true;
+        break;
     }
     drawPlayScreen();
 };
 
 function hasHold(minoType)
 {
+    console.log(minoType);
     if(isHold) return;
 
     if(beforeHoldMino == undefined)
     {
         console.log("first");
         hold(minoType);
-        randMino =  Math.floor(Math.random() * (mino_type.length - 1)) + 1;
-        tetroMino = mino_type[randMino];
+        ArrayNumber++;
+        tetroMino = mino_type[minoLoop[ArrayNumber]];
     }
     else
     {    
@@ -294,10 +341,31 @@ function fixMino()
         {
             if(tetroMino[y][x])
             {
-                screen[tetroMinoMoveY + y][tetroMinoMoveX + x] = randMino;
+                screen[tetroMinoMoveY + y][tetroMinoMoveX + x] = crrentMino;
             }
         }
     }
+    ArrayNumber++;
+    if(ArrayNumber == 7)
+    {   
+        randArray = Math.floor(Math.random() * 5040);
+        nextMinoLoop = nextMino[randArray];
+    }
+    if(ArrayNumber <= 8)
+    {
+        ArrayNumber = 0;
+        minoLoop = nextMinoLoop;
+    }
+    // draw NextMino
+    for(let y = 0; y < TETRIS_SIZE; y++ )
+    {
+        for(let x = 0; x < TETRIS_SIZE; x++ )
+        {
+                drawNextMino(x, y, minoLoop[ArrayNumber + 1])
+        }
+    }
+    
+    
     isHold = false;
     console.log(isHold);
 }
@@ -342,8 +410,18 @@ function dropMino()
     {
         fixMino();
         clearLine();
-        randMino =  Math.floor(Math.random() * (mino_type.length - 1)) + 1;
-        tetroMino = mino_type[randMino];
+        ArrayNumber++;
+        if(ArrayNumber == 7)
+        {   
+            randArray = Math.floor(Math.random() * 5040);
+            nextMinoLoop = nextMino[randArray];
+        }
+        if(ArrayNumber <= 8)
+        {
+            ArrayNumber = 0;
+            minoLoop = nextMinoLoop;
+        }
+        tetroMino = mino_type[crrentMino];
         minoPosition();
 
         if(!canMove(0, 0))
@@ -372,9 +450,12 @@ function init(){
             screen[y][x] = 0;
         }
     }    
-
+    
+    console.log(nextMino[randArray]);
+    console.log(minoLoop[ArrayNumber]);
     drawHoldScreen();
     drawPointScreen();
+    drawnextMinoScreen();
     minoPosition();
     setInterval(dropMino, dropSpeed);
     drawPlayScreen();
