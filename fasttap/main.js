@@ -20,8 +20,8 @@ function drawGameScreen() // Game Screen View
     CANVAS_2D.fillStyle = 'grey';
     CANVAS_2D.fillRect(0, 0, 900, 900);
     
-    fallNote();
-    drawNoteScreen();
+    isfall(); console.log("load isfall()");
+    drawNoteScreen(); console.log("load drawNoteScreen()");
 }
 
 function drawNoteScreen() // All Note View
@@ -49,18 +49,31 @@ function drawNote(x, y) // Mono Note View
     CANVAS_2D.fill();
 }
 
-function fallNote()
+function isfall()
 {
-    for( i = 7; i <= 0; i--)
+    for( i = 7; i >= 0; i--)
     {
-        let sum = NoteMap[i][0] + NoteMap[i][1] + NoteMap[i][2] + NoteMap[i][3]
+        let sum = NoteMap[i][0] + NoteMap[i][1] + NoteMap[i][2] + NoteMap[i][3];
+        console.log(`sum[${i}]:${sum}`);
         if(!sum)
         {
-            for(j = 0; j <= 3; j++)
-            {
-                NoteMap[i][j] = NoteMap[i - 1][j];
-                NoteMap[i - 1][j] = 0
-            }
+            fallNote(i);
+        } 
+        else
+        {
+            break;
+        }
+    }
+}
+
+function fallNote(fallLine)
+{
+    for( i = fallLine; i >= 1; i--)
+    {
+        for( j = 0; j <= 3; j++)
+        {
+            NoteMap[i][j] = NoteMap[i - 1][j];
+            NoteMap[i - 1][j] = 0;
         }
     }
 }
@@ -101,10 +114,10 @@ function init()
             NoteMap[y][x] = 0;
         }
     }    
-    NoteMap[7][1] = 1;
-    NoteMap[6][1] = 1;
-    NoteMap[5][1] = 1;
+    NoteMap[7][1] = 1; NoteMap[7][2] = 1;
+    NoteMap[6][3] = 1;
+    NoteMap[5][2] = 1;
     NoteMap[4][1] = 1;
-    NoteMap[3][1] = 1;
+    NoteMap[3][0] = 1;
     drawGameScreen();
 }
