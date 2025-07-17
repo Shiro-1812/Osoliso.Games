@@ -1,8 +1,9 @@
 let isPlayNow = false; // Playing Game Now State
-
+let isAuto = false;
 let randomNote = Math.floor( Math.random() * 3);
-
 let combo = 0;
+let startTIme = 0;
+let endTime = 0;
 
 // Canvas settings
 const BLOCK_SIZE = 50; // TAP BLOCK
@@ -15,6 +16,7 @@ const PLAY_HEIGHT = 8; // Note height line
 const PLAY_WIDTH  = 4; // Note width line
 const NOTE_END_WIDTH = 300; // draw Note start 
 const NOTE_END_HEIGHT = 50;
+const NOTE_SPACE = 10; // Note to Note Space px
 let NoteMap = [];
 let NextMap = [0, 0, 0, 0];
 
@@ -28,10 +30,12 @@ function drawGameScreen() // Game Screen View
     isfall(); console.log("load isfall()");
     if(!isPlayNow)
     {
+        endTime = performance.now();
         gameOver();
     }
     else
-    {
+    {   
+        drawNoteLine();
         drawNoteScreen(); console.log("load drawNoteScreen()");
         drawComboScreen();
     }
@@ -42,9 +46,36 @@ function drawComboScreen()
 {
     CANVAS_2D.fillStyle = 'black';
     CANVAS_2D.font = "40px serif";
-    CANVAS_2D.fillText(`${combo}`, 450, 150);
+    CANVAS_2D.fillText(`${combo}`, 455, 150);
 }
 
+function drawNoteLine()
+{
+    CANVAS_2D.fillStyle = '#C0C0C0';
+
+    CANVAS_2D.beginPath();
+    CANVAS_2D.fillRect(250, 0, 2*BLOCK_SIZE, 900);
+    CANVAS_2D.beginPath();
+    CANVAS_2D.fillRect(360, 0, 2*BLOCK_SIZE, 900);
+    CANVAS_2D.beginPath();
+    CANVAS_2D.fillRect(470, 0, 2*BLOCK_SIZE, 900);
+    CANVAS_2D.beginPath();
+    CANVAS_2D.fillRect(580, 0, 2*BLOCK_SIZE, 900);
+    CANVAS_2D.beginPath();
+    CANVAS_2D.strokeStyle = '#ffffffff';
+    CANVAS_2D.lineWith = 30;
+    CANVAS_2D.arc(300, 750, BLOCK_SIZE, 0, 2 * Math.PI);
+    CANVAS_2D.stroke();
+    CANVAS_2D.beginPath();
+    CANVAS_2D.arc(410, 750, BLOCK_SIZE, 0, 2 * Math.PI);
+    CANVAS_2D.stroke();
+    CANVAS_2D.beginPath();
+    CANVAS_2D.arc(520, 750, BLOCK_SIZE, 0, 2 * Math.PI);
+    CANVAS_2D.stroke();
+    CANVAS_2D.beginPath();
+    CANVAS_2D.arc(630, 750, BLOCK_SIZE, 0, 2 * Math.PI);
+    CANVAS_2D.stroke();
+}
 
 function drawNoteScreen() // All Note View
 {
@@ -62,7 +93,7 @@ function drawNoteScreen() // All Note View
 
 function drawNote(x, y, Mode) // Mono Note View
 {
-    let drawX = x * (2 * BLOCK_SIZE) + NOTE_END_WIDTH;
+    let drawX = x * (2 * BLOCK_SIZE + NOTE_SPACE) + NOTE_END_WIDTH;
     let drawY = y * (2 * BLOCK_SIZE) + NOTE_END_HEIGHT;
 
     CANVAS_2D.beginPath();
@@ -102,11 +133,10 @@ function fallNote(fallLine)
             NoteMap[i - 1][j] = 0;
         }
     }
-    randomNote = Math.floor( Math.random() * 3);
+    randomNote = Math.floor( Math.random() * 4);
+    console.log(`randomNote:${randomNote}`);
     NoteMap[0][randomNote] = 1;
 }
-
-
 
 document.onkeydown = (e) =>
 {
@@ -147,6 +177,7 @@ document.onkeydown = (e) =>
                 break;
             case 'KeyR':
                 console.log("push!R");
+                isPlayNow = true;
                 init();
                 break;
         }
@@ -170,23 +201,25 @@ function init()
         }
     }    
     drawMainScreen()
-    //drawStartScreenElem();
+    drawStartScreenElem();
 
-    
     for(let i = 0; i <= 7; i++)
     {   
-        randomNote = Math.floor( Math.random() * 3);
+        randomNote = Math.floor( Math.random() * 4);
         NoteMap[i][randomNote] = 1; 
+        console.log(`randomNote:${randomNote}`);
         console.log(i);
     }
     
-    isPlayNow = true;
     combo = 0;
+    startTIme = performance.now();
     drawGameScreen(); 
 }
 
 function gameOver()
 {
+    let time = (endTime - startTIme) / 1000
+    let CperS = Math.round((combo / time) * 100) / 100;
     drawMainScreen();
     // draw Result part Screen
     CANVAS_2D.fillStyle = '#C0C0C0';
@@ -198,6 +231,7 @@ function gameOver()
     CANVAS_2D.fillStyle = 'black';
     CANVAS_2D.fillText("-----------Result-----------", 110, 400);
     CANVAS_2D.fillText(`Point:  ${combo}`, 100, 550);
+    CANVAS_2D.fillText(`Note/s:  ${ CperS }`, 100, 650);
     CANVAS_2D.font = "30px serif";
     CANVAS_2D.fillText("ReStart: R", 390, 700);
 
@@ -214,7 +248,7 @@ function drawMainScreen()
 function drawStartScreenElem()
 {
 // Start Button
-    CANVAS_2D.strokeStyle = '#005133';
-    CANVAS_2D.lineWith = 10;
-    CANVAS_2D.strokeRect(350, 500, 200, 50);
+    CANVAS_2D.strokeStyle = 'black';
+    CANVAS_2D.font = '30px serif';
+    CANVAS_2D.fillText("Start push 'R' button", 200, 500);
 }
