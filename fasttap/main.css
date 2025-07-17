@@ -1,4 +1,15 @@
-#container
+.mainscreen
 {
-    margin: auto;
+    background-color: rgb(165, 159, 131);
+}
+.gamescreen
+{
+    background-color: black;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#can
+{
+    margin:auto;
 } 
